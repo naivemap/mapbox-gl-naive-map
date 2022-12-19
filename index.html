@@ -4,15 +4,112 @@
     <meta charset="utf-8" />
     <title>vite lib</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .button {
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        padding: 8px 10px;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #fff;
+        background: #ee8a65;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
+    <div id="map"></div>
+    <ul id="buttons">
+      <li id="add" class="button">添加图层组</li>
+      <li id="remove" class="button">删除图层组</li>
+      <li id="light" class="button">浅色地图</li>
+      <li id="dark" class="button">深色地图</li>
+    </ul>
+
     <script src="./dist/index.umd.js"></script>
     <script type="module">
-      import { add } from './dist/index.js'
+      // import ExMap from './src'
+      const map = new ExMap({
+        accessToken:
+          'pk.eyJ1IjoiaHVhbmdsaWkiLCJhIjoiY2ptbjJsZXRsMHBlNzNsbGIycTk3eWU0biJ9.Pj_8_ER8nD7UQSSeOg4JZA',
+        container: 'map', // container ID
+        style: 'mapbox://styles/huanglii/ckqt08oxg1kcc18ub9vowurqd?optimize=true', // style URL
+        center: [107.744809, 30.180706], // starting position [lng, lat]
+        zoom: 7 // starting zoom
+      })
+      map.on('load', () => {})
 
-      console.log(add(1, 2))
+      document.getElementById('add').addEventListener('click', () => {
+        map.addGroupLayer('group-layer', {
+          sources: {
+            dfbdc2e7ebbc5: {
+              type: 'vector',
+              tiles: [
+                'https://fw.cqzhitian.cn/geoserver/gwc/service/wmts/rest/jcxx:gx_sdx_gysdx_line/EPSG:900913/EPSG:900913:{z}/{y}/{x}?format=application/vnd.mapbox-vector-tile'
+              ],
+              bounds: [105.426498, 28.64345, 110.18235, 31.728889]
+            },
+            f0299f8eb3dc4: {
+              type: 'vector',
+              tiles: [
+                'https://fw.cqzhitian.cn/geoserver/gwc/service/wmts/rest/jcxx:jjyzq_xjxzq_cq_poly_38/EPSG:900913/EPSG:900913:{z}/{y}/{x}?format=application/vnd.mapbox-vector-tile'
+              ],
+              bounds: [105.288063, 28.16346, 110.195671, 32.204136]
+            }
+          },
+          layers: [
+            {
+              id: 'jcxx:gx_sdx_gysdx_line',
+              type: 'line',
+              source: 'dfbdc2e7ebbc5',
+              'source-layer': 'gx_sdx_gysdx_line',
+              paint: {
+                'line-color': '#F47378'
+              }
+            },
+            {
+              id: 'jcxx:jjyzq_xjxzq_cq_poly_38',
+              type: 'fill',
+              source: 'f0299f8eb3dc4',
+              'source-layer': 'jjyzq_xjxzq_cq_poly_38',
+              paint: {
+                'fill-color': '#6BD089'
+              },
+              metadata: {
+                before: 'aeroway-line',
+                cursor: 'pointer'
+              }
+            }
+          ]
+        })
+      })
+      document.getElementById('remove').addEventListener('click', () => {
+        map.removeGroupLayer('group-layer')
+      })
+      document.getElementById('light').addEventListener('click', () => {
+        map.setBasemapStyle('mapbox://styles/huanglii/ckqt08oxg1kcc18ub9vowurqd?optimize=true')
+      })
 
-      console.log(MyLib.add(3, 4))
+      document.getElementById('dark').addEventListener('click', () => {
+        map.setBasemapStyle(
+          'mapbox://styles/huanglii/ckqt0qdsubqxu17nxf59nt9r0?optimize=true',
+          false
+        )
+      })
     </script>
   </body>
 </html>

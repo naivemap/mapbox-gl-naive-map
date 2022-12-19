@@ -6,6 +6,7 @@
 
 ## Packages
 
-| Package                                     | Description |
-| ------------------------------------------- | ----------- |
-| [vite-lib-template](./vite-lib-template.md) |             |
+|  Package | Description |
+|  --- | --- |
+|  [mapbox-gl-ex-map](./mapbox-gl-ex-map.md) |  |
+

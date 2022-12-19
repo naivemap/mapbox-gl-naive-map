@@ -1,1 +1,3 @@
-# vite-lib-template
+# mapbox-gl-ex-map
+
+Extended Map of `mapboxgl.Map`.
