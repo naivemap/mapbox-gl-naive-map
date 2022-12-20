@@ -1,8 +1,8 @@
 {
   "name": "@naivemap/mapbox-gl-ex-map",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Extended Map of mapboxgl.Map",
-  "repository": "https://github.com/huanglii/mapbox-gl-ex-map",
+  "repository": "https://github.com/naivemap/mapbox-gl-ex-map",
   "publishConfig": {
     "tag": "alpha"
   },
@@ -12,11 +12,11 @@
   "author": "huangli",
   "license": "MIT",
   "main": "./dist/index.umd.js",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.umd.js"
     }
   },
@@ -28,13 +28,13 @@
   "scripts": {
     "dev": "vite",
     "test": "jest ./test/",
-    "build:umd": "vite build",
-    "build:es": "tsc",
-    "build": "npm-run-all build:umd build:es",
+    "build:vite": "vite build",
+    "build:type": "tsc",
+    "build": "npm-run-all build:vite build:type",
     "api-extractor": "npx api-extractor run --local --verbose",
     "api-documenter": "api-documenter markdown -i ./temp/ -o ./docs/",
     "build:docs": "npm-run-all build api-extractor api-documenter",
-    "prepublishOnly": "npm-run-all build:umd build:es",
+    "prepublishOnly": "npm-run-all build:vite build:type",
     "eslint": "eslint --ext .js,.ts --ignore-path .gitignore --fix \"src/**/*.ts\"",
     "prettier": "prettier .  --write",
     "commit": "git-cz",
