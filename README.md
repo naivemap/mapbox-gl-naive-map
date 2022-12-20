@@ -4,13 +4,13 @@ Extended Map of `mapboxgl.Map`.
 
 [API Reference](./docs/index.md)
 
-## 安装
+## Install
 
 ```bash
 npm i mapbox-gl @naivemap/mapbox-gl-naive-map
 ```
 
-## 使用
+## Quick start
 
 ```js
 import NaiveMap from '@naivemap/mapbox-gl-naive-map'

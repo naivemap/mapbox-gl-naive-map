@@ -1,11 +1,9 @@
 {
   "name": "@naivemap/mapbox-gl-naive-map",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0",
   "description": "Extended Map of mapboxgl.Map",
   "repository": "https://github.com/naivemap/mapbox-gl-naive-map",
-  "publishConfig": {
-    "tag": "alpha"
-  },
+  "publishConfig": {},
   "keywords": [
     "mapboxgl"
   ],
