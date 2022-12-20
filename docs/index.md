@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [mapbox-gl-ex-map](./mapbox-gl-ex-map.md) |  |
+|  [@naivemap/mapbox-gl-naive-map](./mapbox-gl-naive-map.md) |  |
 

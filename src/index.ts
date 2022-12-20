@@ -35,7 +35,7 @@ export interface LayerMetaData {
  * Mapbox 地图扩展
  * @public
  */
-export default class ExMap extends mapboxgl.Map {
+export default class NaiveMap extends mapboxgl.Map {
   private _groupLayers: Map<string, GroupLayer> = new Map()
 
   /**

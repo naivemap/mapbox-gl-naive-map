@@ -1,4 +1,4 @@
-# mapbox-gl-ex-map
+# mapbox-gl-naive-map
 
 Extended Map of `mapboxgl.Map`.
 
@@ -7,16 +7,16 @@ Extended Map of `mapboxgl.Map`.
 ## 安装
 
 ```bash
-npm i mapbox-gl @naivemap/mapbox-gl-ex-map
+npm i mapbox-gl @naivemap/mapbox-gl-naive-map
 ```
 
 ## 使用
 
 ```js
-import ExMap from '@naivemap/mapbox-gl-ex-map'
+import NaiveMap from '@naivemap/mapbox-gl-naive-map'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-const map = new ExMap({
+const map = new NaiveMap({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
   center: [-74.5, 40],
@@ -24,7 +24,7 @@ const map = new ExMap({
 })
 
 map.on('load', () => {
-  map.addGroupLayer('', {
+  map.addGroupLayer('test', {
     sources: {
       maine: {
         type: 'geojson',
@@ -95,14 +95,14 @@ map.on('load', () => {
     <meta charset="utf-8" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@naivemap/mapbox-gl-ex-map"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@naivemap/mapbox-gl-naive-map"></script>
   </head>
   <body>
     <div id="map" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0"></div>
     <script>
       mapboxgl.accessToken = ''
 
-      const map = new ExMap({
+      const map = new NaiveMap({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v12',
         center: [-74.5, 40],

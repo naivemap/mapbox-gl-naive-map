@@ -2,12 +2,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>mapbox-gl-ex-map</title>
+    <title>mapbox-gl-naive-map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet" />
     <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script> -->
     <!-- <script src="./dist/index.umd.js"></script>783698 -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@naivemap/mapbox-gl-ex-map"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@naivemap/mapbox-gl-naive-map"></script> -->
     <style>
       body {
         margin: 0;
@@ -43,8 +43,8 @@
     </ul>
 
     <script type="module">
-      import ExMap from './src'
-      const map = new ExMap({
+      import NaiveMap from './src'
+      const map = new NaiveMap({
         accessToken:
           'pk.eyJ1IjoiaHVhbmdsaWkiLCJhIjoiY2ptbjJsZXRsMHBlNzNsbGIycTk3eWU0biJ9.Pj_8_ER8nD7UQSSeOg4JZA',
         container: 'map', // container ID

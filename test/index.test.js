@@ -1,4 +1,4 @@
-const ExMap = require('../src/')
+const NaiveMap = require('../src/')
 
 function createMap(options, callback) {
   const container = document.createElement('div')
@@ -22,7 +22,7 @@ function createMap(options, callback) {
 
   if (options && options.deleteStyle) delete defaultOptions.style
 
-  const map = new ExMap.default(Object.assign({}, defaultOptions, options))
+  const map = new NaiveMap.default(Object.assign({}, defaultOptions, options))
   if (callback)
     map.on('load', () => {
       callback(null, map)

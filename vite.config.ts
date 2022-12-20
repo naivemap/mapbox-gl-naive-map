@@ -6,7 +6,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       // formats: ['umd', 'es'],
-      name: 'ExMap',
+      name: 'NaiveMap',
       fileName: 'index'
     },
     rollupOptions: {
