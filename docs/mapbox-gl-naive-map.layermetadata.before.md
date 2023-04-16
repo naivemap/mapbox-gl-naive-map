@@ -4,10 +4,10 @@
 
 ## LayerMetaData.before property
 
-已有图层的 id，添加该属性后，当前图层会添加到指定 id 的图层之前
+已有图层组的 id 或 图层的 id（优先判断为图层组 id），添加该属性后，当前图层会添加到指定图层之前，
 
 <b>Signature:</b>
 
 ```typescript
-before?: string;
+before?: string | string[];
 ```
