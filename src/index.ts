@@ -18,9 +18,9 @@ export interface GroupLayer {
  */
 export interface LayerMetaData {
   /**
-   * 已有图层的 id，添加该属性后，当前图层会添加到指定 id 的图层之前
+   * 已有图层组的 id 或 图层的 id（优先判断为图层组 id），添加该属性后，当前图层会添加到指定图层之前，
    */
-  before?: string
+  before?: string | string[]
   /**
    * 鼠标样式，添加该属性后，鼠标移入要素时鼠标样式会变成指定的样式
    */
@@ -87,7 +87,9 @@ export default class NaiveMap extends mapboxgl.Map {
       if (!this.getLayer(layer.id)) {
         const metadata = (layer.metadata || {}) as LayerMetaData
         // beforeId
-        const before = metadata.before
+        const beforeId = !!metadata.before
+          ? this._getBeforeLayerId(layer.id, metadata.before)
+          : undefined
 
         // 给图层添加类型
         layer.metadata = {
@@ -95,7 +97,7 @@ export default class NaiveMap extends mapboxgl.Map {
           grouplayer: id
         }
         // 添加图层
-        this.addLayer(layer as mapboxgl.AnyLayer, before)
+        this.addLayer(layer as mapboxgl.AnyLayer, beforeId)
         // 设置鼠标样式
         this._setLayerCursor(layer)
       } else {
@@ -175,6 +177,38 @@ export default class NaiveMap extends mapboxgl.Map {
         })
       })
     }
+  }
+
+  private _getBeforeLayerIdByString(before: string) {
+    // 先判断是否为图层组
+    const groupLayer = this.getGroupLayer(before)
+
+    if (groupLayer && groupLayer.layers.length > 0) {
+      return groupLayer.layers[0].id
+    }
+
+    // 不是图层组，判断是否存在图层，存在直接返回，不存在返回 undefined
+    return !!this.getLayer(before) ? before : undefined
+  }
+
+  private _getBeforeLayerId(layerId: string, before: string | string[]) {
+    let beforeId = undefined
+    if (typeof before === 'string') {
+      beforeId = this._getBeforeLayerIdByString(before)
+    } else if (Array.isArray(before)) {
+      for (const item of before) {
+        beforeId = this._getBeforeLayerIdByString(item)
+        if (beforeId) {
+          break
+        }
+      }
+    }
+    if (!beforeId) {
+      console.warn(
+        `Layer with id "${before}" does not exist on this map. The layer with id "${layerId}" will be appended to the end of the layers array and appear visually above all other layers.`
+      )
+    }
+    return beforeId
   }
 
   private _setLayerCursor(layer: mapboxgl.Layer) {

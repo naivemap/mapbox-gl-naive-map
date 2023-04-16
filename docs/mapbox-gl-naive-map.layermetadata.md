@@ -16,6 +16,6 @@ export interface LayerMetaData
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
-|  [before?](./mapbox-gl-naive-map.layermetadata.before.md) |  | string | <i>(Optional)</i> 已有图层的 id，添加该属性后，当前图层会添加到指定 id 的图层之前 |
+|  [before?](./mapbox-gl-naive-map.layermetadata.before.md) |  | string \| string\[\] | <i>(Optional)</i> 已有图层组的 id 或 图层的 id（优先判断为图层组 id），添加该属性后，当前图层会添加到指定图层之前， |
 |  [cursor?](./mapbox-gl-naive-map.layermetadata.cursor.md) |  | CSSStyleDeclaration\['cursor'\] | <i>(Optional)</i> 鼠标样式，添加该属性后，鼠标移入要素时鼠标样式会变成指定的样式 |
 
